@@ -2,9 +2,7 @@
 
 Note app built using React (from the create-react-app package). Users can add notes to their list and clear all notes. Notes persist across sessions.
 
-## Available Scripts
-
-In the project directory, you can run:
+## How to Use
 
 ### `npm start`
 
@@ -24,9 +22,27 @@ Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
 
-## Tech Content
+## Testing
+
+For unit tests we can use Jest - this comes as part of the create-react-app. To test the components features we can use Enzyme; this allows use to use a library of functions for mocking component creation and behaviour. 
+
+To install enzyme: `npm install enzyme react-test-rendered --save-dev`. Save as a dev dependency because we don't need this library as part of the production code. For React >16 we need enzyme adapters: `npm install enzyme-adapters-react-16 --save-dev`. To install adapters correctly we also need two extra files: src/tempPolyfills.js and src/setupTests.js (see example code here for the content). Essentially these files ensure the enzyme adapters are correctly configured for the tests.
+
+In the tests we need to `import { mount } from 'enzyme'`, this allows us to access enzyme libraries to mock the actual mount of a component onto the DOM.
+
+#### Helpers
+
+Some helpful helper methods:
+- .debug(): use this in a console.log() to see a print out of the component state
+- .find(tag).text(): returns the text value contained within the specified tag
+- .simulate(): simulates user events such as inputting values or clicking a button
+
+#### Test Coverage
+
+Jest comes with a built-in coverage tool. Run `npm test -- --coverage` to get the results.
+
+## Tech Stuff
 
 - ES6 syntax for creating classes was used, eg:
 
