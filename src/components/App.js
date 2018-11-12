@@ -17,10 +17,9 @@ class App extends Component {
   }
 
   submit() {
-    const notes = this.state.notes;
-    const newNote = { text: this.state.text };
-    notes.push(newNote);
-    this.setState({ notes: notes })
+    const { notes, text } = this.state;
+    notes.push({ text });
+    this.setState({ notes })
   }
   // render: outlines the jsx that we want to return
   render() {
