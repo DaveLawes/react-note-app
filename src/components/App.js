@@ -11,8 +11,16 @@ class App extends Component {
     super(); // calls constructor function of the extended react Component
     // keys and values that represent underlying components within the state
     this.state = {
-      text: ''
+      text: '',
+      notes: []
     }
+  }
+
+  submit() {
+    const notes = this.state.notes;
+    const newNote = { text: this.state.text };
+    notes.push(newNote);
+    this.setState({ notes: notes })
   }
   // render: outlines the jsx that we want to return
   render() {
@@ -20,10 +28,17 @@ class App extends Component {
       <div>
         <h2>Note App</h2>
         <Form inline>
-          <FormControl onChange={event => this.setState({ text: event.target.value })}/>
+          <FormControl onChange={event => this.setState({ text: event.target.value }) }/>
           {' '}
-          <Button onClick={() => console.log(this.state)}>Submit</Button>
+          <Button onClick={() => this.submit()}>Submit</Button>
         </Form>
+        {
+          this.state.notes.map((note, index) => {
+            return (
+              <div key={index}>{note.text}</div>
+            )
+          })
+        }
       </div>
     )
   }
