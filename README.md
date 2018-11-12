@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Note App using React
+
+Note app built using React (from the create-react-app package). Users can add notes to their list and clear all notes. Notes persist across sessions.
 
 ## Available Scripts
 
@@ -15,7 +17,6 @@ You will also see any lint errors in the console.
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -25,20 +26,24 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tech Content
 
-### `npm run eject`
+- ES6 syntax for creating classes was used, eg:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+class Note extends Component {
+  constructor() {}
+}
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- The `extends` keyword provides inheritance from parent classes. A react component should always inherit from React's base Component class.
+- Imports and exports allow files to be shared.
+- Arrow functions do not create their own 'this', therefore the parent 'this' can be used directly. With named functions you have to `.bind(this)` to ensure the scope of the function is referenced correctly.
+- Destructing objects allows you to directly declare variables whose names match key names within objects.
+- JavaScript XML (JSX) is the primary way to define component structure in React.
+- State = underlying component data.
+- Props = data received from parent components.
+- Lifecycle hooks = methods that fire at specific times in the life of a component (e.g. componentDidMount is fired when a component is first rendered on a page).
+- Cookies can be used to persist data across sessions. The package `sfcookies` was used in this app to write, read and delete cookie keys.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
