@@ -2,6 +2,10 @@
 // react is the default import, whereas component is non-default
 import React, { Component } from 'react';
 import { Form, FormControl, Button } from 'react-bootstrap';
+import Note from './Note';
+import { bake_cookie, read_cookie, delete_cookie } from 'sfcookies';
+
+const cookie_key = 'NOTES';
 
 // components are classes - extend from the react Component class
 
@@ -16,10 +20,21 @@ class App extends Component {
     }
   }
 
+// invoked when the component is loaded onto the DOM
+  componentDidMount() {
+    this.setState({ notes: read_cookie(cookie_key) });
+  }
+
   submit() {
     const { notes, text } = this.state;
     notes.push({ text });
-    this.setState({ notes })
+    this.setState({ notes });
+    bake_cookie(cookie_key, this.state.notes);
+  }
+
+  clear() {
+    delete_cookie(cookie_key);
+    this.setState({ notes: [] });
   }
   // render: outlines the jsx that we want to return
   render() {
@@ -34,10 +49,12 @@ class App extends Component {
         {
           this.state.notes.map((note, index) => {
             return (
-              <div key={index}>{note.text}</div>
+              <Note key={index} note={note} />
             )
           })
         }
+        <hr />
+        <Button onClick={() => this.clear()}>Clear Notes</Button>
       </div>
     )
   }
